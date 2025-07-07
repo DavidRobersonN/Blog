@@ -5,7 +5,7 @@
   "debug.console.fontSize": 19,
   "terminal.integrated.fontSize": 19,
   "editor.glyphMargin": false,
-  "workbench.activityBar.location": "hidden",
+  "workbench.activityBar.location": "default",
   "editor.lineNumbers": "off",
   "files.eol": "\n", // Final de linha sempre será LF
   "workbench.editor.labelFormat": "short",
@@ -20,6 +20,9 @@
   "code-runner.executorMap": {
     "typescript": "clear ; npx tsx"
   },
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
 
   "tailwindCSS.experimental.classRegex": [
     ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
@@ -47,5 +50,6 @@
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.words": ["Spinloader"]
 }

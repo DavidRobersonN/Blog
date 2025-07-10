@@ -1,21 +1,18 @@
-"use client";
-
 import clsx from "clsx";
 
 export function Header() {
   return (
-    <div>
+    <header>
       <h1
         className={clsx(
-          "text-6x1",
-          "font-sans",
-          "text-blue-500",
-          "hover:text-white",
-          "bg-fixed:",
-          "bg-white",
-          "hover:bg-blue-500"
+          "text-4x1/normal font-extrabold py-8",
+          "sm:text-5xl/normal sm:py-10",
+          "md:text-6xl/normal md:py-12",
+          "md:text-7xl/normal lg:py-13"
         )}
-      ></h1>
-    </div>
+      >
+        <a href="#">The Blog</a>
+      </h1>
+    </header>
   );
 }

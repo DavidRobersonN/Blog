@@ -51,5 +51,5 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["Spinloader"]
+  "cSpell.words": ["bryen", "Spinloader"]
 }

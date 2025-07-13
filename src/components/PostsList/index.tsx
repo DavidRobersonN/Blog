@@ -1,10 +1,12 @@
-import { postRepository } from "@/repositories/post";
+import { findAllPublicPosts } from "@/lib/queries";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostHeading } from "../PostHeading";
+import { formatDatetime, formatDistanceToNow } from "@/utils/format-datetime";
+
 // Função assíncrona que renderiza a lista de posts do blog
 export async function PostsList() {
   // Busca todos os posts utilizando o repositório (padrão Repository)
-  const posts = await postRepository.findAll();
+  const posts = await findAllPublicPosts();
 
   return (
     // Layout em grid responsivo:
@@ -12,7 +14,9 @@ export async function PostsList() {
     // - 2 colunas no sm (>= 640px)
     // - 3 colunas no lg (>= 1024px)
     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {posts.map((post) => {
+      {posts.slice(1).map((post) => {
+        const postLink = `/post/${post.slug}`;
+
         return (
           // Wrapper para cada post individual
           // `group` permite aplicar estilos nos filhos ao passar o mouse aqui
@@ -21,7 +25,7 @@ export async function PostsList() {
             <PostCoverImage
               // Define a URL de navegação para o post
               linkProps={{
-                href: `/post/${post.slug}`, // URL amigável baseada no slug do post
+                href: postLink, // URL amigável baseada no slug do post
               }}
               // Propriedades da imagem
               imageProps={{
@@ -38,12 +42,13 @@ export async function PostsList() {
               <time
                 className="text-slate-600 block text-sm/tight"
                 dateTime={post.createdAt} // atributo semântico para SEO
+                title={formatDistanceToNow(post.createdAt)}
               >
-                {post.createdAt} {/* Exibição da data no front */}
+                {formatDatetime(post.createdAt)}
               </time>
 
               {/* Título do post (componente reutilizável e semântico) */}
-              <PostHeading as="h2" url="#">
+              <PostHeading as="h2" url={postLink}>
                 {post.title}
               </PostHeading>
 

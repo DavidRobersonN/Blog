@@ -21,7 +21,7 @@ export class JsonPostRepository implements PostRepository {
     await new Promise((resolve) => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
   }
 
-  private async readFromDisco() {
+  private async readFromDisk() {
     //readFile recebe um json e converte em uma string, mas  nao converte para javaScript
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, "utf-8");
     const parsedJson = JSON.parse(jsonContent);
@@ -29,15 +29,18 @@ export class JsonPostRepository implements PostRepository {
     return posts;
   }
 
-  async findAll(): Promise<PostModel[]> {
+  async findAllPublic(): Promise<PostModel[]> {
     await this.simulateWait();
-    const posts = await this.readFromDisco();
-    return posts;
+
+    console.log("\n", "findAllPublic", "\n");
+
+    const posts = await this.readFromDisk();
+    return posts.filter((post) => post.published);
   }
 
   async findById(id: string): Promise<PostModel> {
     await this.simulateWait();
-    const posts = await this.findAll();
+    const posts = await this.findAllPublic();
     const post = posts.find((post) => post.id === id);
     if (!post) throw new Error("Post não encontrado");
 

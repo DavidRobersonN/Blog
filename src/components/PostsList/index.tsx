@@ -1,4 +1,4 @@
-import { findAllPublicPosts } from "@/lib/queries";
+import { findAllPublicPostsCached } from "@/lib/queries";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostHeading } from "../PostHeading";
 import { formatDatetime, formatDistanceToNow } from "@/utils/format-datetime";
@@ -6,7 +6,7 @@ import { formatDatetime, formatDistanceToNow } from "@/utils/format-datetime";
 // Função assíncrona que renderiza a lista de posts do blog
 export async function PostsList() {
   // Busca todos os posts utilizando o repositório (padrão Repository)
-  const posts = await findAllPublicPosts();
+  const posts = await findAllPublicPostsCached();
 
   return (
     // Layout em grid responsivo:

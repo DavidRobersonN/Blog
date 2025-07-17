@@ -24,6 +24,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           <Header />
 
           {children}
+
           <Footer />
         </Container>
       </body>

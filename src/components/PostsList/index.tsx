@@ -1,4 +1,4 @@
-import { findAllPublicPostsCached } from "@/lib/posts/queries";
+import { findAllPublicPostsCached } from "@/lib/posts/queries/public";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostHeading } from "../PostHeading";
 import { formatDatetime, formatDistanceToNow } from "@/utils/format-datetime";
